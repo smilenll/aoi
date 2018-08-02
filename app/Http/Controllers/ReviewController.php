@@ -62,7 +62,7 @@ class ReviewController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Model\Review $review
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit(Review $review)
     {
@@ -87,8 +87,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Product $product
      * @param  \App\Model\Review $review
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Product $product, Review $review)
     {

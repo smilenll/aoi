@@ -21,7 +21,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
@@ -31,7 +31,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -41,7 +41,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ProductRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
@@ -63,7 +63,7 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Model\Product $product
-     * @return \Illuminate\Http\Response
+     * @return ProductResource
      */
     public function show(Product $product)
     {
@@ -74,7 +74,7 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Model\Product $product
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit(Product $product)
     {
@@ -87,6 +87,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Model\Product $product
      * @return \Illuminate\Http\Response
+     * @throws ProductNotBelongsToUser
      */
     public function update(Request $request, Product $product)
     {
@@ -116,6 +117,10 @@ class ProductController extends Controller
             , Response::HTTP_NO_CONTENT);
     }
 
+    /**
+     * @param $product
+     * @throws ProductNotBelongsToUser
+     */
     public function ProductUserCheck($product)
     {
         if (Auth::id() !== $product->user_id) {
