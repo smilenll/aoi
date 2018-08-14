@@ -5,6 +5,13 @@
 /.idea
 /.vscode
 /.vagrant
+/.settings/
+/.buildpath
+/.project
+/vendor/
+/.idea/
+/tests/
+/nbproject
 Homestead.json
 Homestead.yaml
 npm-debug.log
