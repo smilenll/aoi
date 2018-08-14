@@ -2,29 +2,77 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
-
-class User extends Authenticatable
+class User
 {
-    use HasApiTokens, Notifiable;
+    /**
+     * @var
+     */
+    private $firstName;
+    /**
+     * @var
+     */
+    private $lastName;
+    /**
+     * @var
+     */
+    private $email;
+    /**
+     * @var
+     */
+    private $token;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * User constructor.
+     * @param $firstName
+     * @param $lastName
+     * @param $email
+     * @param $token
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function __construct($firstName, $lastName, $email, $token)
+    {
+        $this->firstName = $firstName;
+        $this->lastName  = $lastName;
+        $this->email     = $email;
+        $this->token     = $token;
+    }
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * @return mixed
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName . " " . $this->lastName;
+    }
 }
